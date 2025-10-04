@@ -8,7 +8,7 @@ const Footer = () => {
       <span className="font-regular tracking-wide">Canada</span>
       <span className="font-regular tracking-wide">
         Made by:
-        <Link href="/" className="ml-1 hover:underline font-semibold text-blue-900">Neeraj</Link>
+        <Link href="/" className="ml-1 hover:underline font-semibold text-blue-900">Neeraj Neeraj</Link>
       </span>
     </Wrapper>
   );
