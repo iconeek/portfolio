@@ -12,7 +12,13 @@ export default function Home() {
     <>
       <Header />
       <Wrapper className="flex flex-col items-center justify-center space-y-4">
-        <Image src="/google.png" alt="Logo" width={400} height={400} className="object-contain" />
+        <Image
+          src="/google.png"
+          alt="Logo"
+          width={400}
+          height={400}
+          className="object-contain"
+        />
 
         <div className="rounded-full shadow-md hover:shadow-lg border h-12 w-full max-w-lg flex items-center justify-between px-4">
           <span className="flex gap-2 items-center">
@@ -40,12 +46,16 @@ export default function Home() {
           >
             Qoogle Search
           </Link>
-          <Button
-            className="font-normal antialiased tracking-normal"
-            variant="secondary"
+          <Link
+            href="#"
+            className={buttonVariants({
+              variant: "secondary",
+              className:
+                "font-normal antialiased tracking-normal hover:border-1 hover:border-gray-300",
+            })}
           >
             I&apos;m Feeling Lucky
-          </Button>
+          </Link>
         </div>
 
         <div className="text-xs mt-4">
