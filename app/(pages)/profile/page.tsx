@@ -4,14 +4,39 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { EllipsisVertical } from "lucide-react";
+import {
+  EllipsisVertical,
+  GithubIcon,
+  Linkedin,
+  LinkedinIcon,
+  Twitter,
+  X,
+} from "lucide-react";
+
+const socials = [
+  {
+    name: "Linkedin",
+    href: "https://www.linkedin.com/in/neerajneerajweb/",
+    icon: Linkedin,
+  },
+  {
+    name: "Github",
+    href: "https://github.com/iconeek",
+    icon: GithubIcon,
+  },
+  {
+    name: "X",
+    href: "#",
+    icon: Twitter,
+  },
+];
 
 const Profile = () => {
   return (
-    <Wrapper className="mt-6 flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
+    <Wrapper className="my-6 flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
       <div className="flex items-center gap-6">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold">Neeraj Neeraj</h1>
+          <h1 className="text-3xl font-semibold">Neeraj Bhardwaj</h1>
           <p className="text-sm text-gray-800 flex items-center gap-2">
             Full Stack Developer
             <EllipsisVertical className="h-4 w-4 stroke-black" />
@@ -75,8 +100,8 @@ const Profile = () => {
 
       <div className="flex flex-col md:flex-row items-center">
         <div className="">
-          <h1 className="text-lg font-semibold">About</h1>
-          <p className="mt-4">
+          <h1 className="text-xl font-semibold">About</h1>
+          <p className="my-4">
             I&apos;m a Full Stack Developer with 1.5+ years of experience
             building web applications that are both functional and
             user-friendly. I&apos;ve worked with technologies like React,
@@ -89,7 +114,7 @@ const Profile = () => {
             into Cloud Data Management to broaden my expertise in cloud
             technologies.
           </p>
-          <div className="mt-4 space-y-1">
+          <div className="space-y-1">
             <p className="text-sm">
               <span className="font-bold">Born: </span>March 24, 2000 (age 26
               years),{" "}
@@ -131,7 +156,22 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div></div>
+      </div>
+
+      <div className="">
+        <h1 className="text-xl font-semibold my-4">Profiles</h1>
+        <div className="flex items-center justify-start gap-6">
+          {socials.map(({ name, href, icon: Icon }) => (
+            <Link
+              key={name}
+              href={href}
+              className="border-2 border-zinc-400 p-2 rounded-full"
+              target="_blank"
+            >
+              <Icon className="h-5 w-5" />
+            </Link>
+          ))}
+        </div>
       </div>
     </Wrapper>
   );

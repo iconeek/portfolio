@@ -57,7 +57,7 @@ const SearchHeader = () => {
                   className="object-contain flex md:hidden"
                 />
               </Link>
-              <span className="flex items-center">Neeraj</span>
+              <span className="flex items-center">Neeraj Bhardwaj</span>
             </span>
             <span className="flex gap-3">
               <Link href="/">
