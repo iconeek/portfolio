@@ -1,11 +1,16 @@
+"use client";
+
 import Wrapper from "@/components/globals/Wrapper";
+import React from "react";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import { Camera, Grip, Mic, Search, Slash, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
 
 const routes = [
   {
@@ -26,10 +31,11 @@ const routes = [
   },
 ];
 
-const Profile = () => {
+const SearchHeader = () => {
+  const pathName = usePathname();
   return (
-    <Wrapper>
-      <div className="flex items-center justify-between h-24 w-full">
+    <div>
+      <div className="flex items-center justify-between h-24">
         <div className="flex items-center justify-start w-full">
           <Link href="/">
             <Image
@@ -75,24 +81,23 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-start gap-4 h-full w-full">
+      <Wrapper className="flex items-center justify-start gap-1 h-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
         {routes.map((route) => (
-          <Link
-            key={route.name}
-            href={route.href}
-            className={buttonVariants({
-              variant: "link",
-              className:
-                "hover:font-semibold hover:text-gray-800 hover:decoration-none text-gray-500 p-2",
-            })}
-          >
-            {route.name}
-          </Link>
+          <Button variant="link" key={route.name} asChild>
+            <Link
+              href={route.href}
+              className={cn(
+                "hover:font-semibold hover:text-gray-800",
+                pathName === route.href ? "text-gray-900 " : "text-gray-500"
+              )}
+            >
+              {route.name}
+            </Link>
+          </Button>
         ))}
-      </div>
-      <Separator className="" />
-    </Wrapper>
+      </Wrapper>
+    </div>
   );
 };
 
-export default Profile;
+export default SearchHeader;
