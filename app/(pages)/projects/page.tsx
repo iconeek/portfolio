@@ -16,18 +16,36 @@ const projects = [
     link: "https://codewithnik.vercel.app",
     author: "Neeraj",
     logo: "/codewithnik.png",
-    time: "Aug 9, 2025",
+    time: "Aug 9, 2024",
     description:
-      "I've focused on delivering secure, high-performance applications with authentication and deploying them on platforms like AWS and Vercel.",
+      "This portfolio website serves as a personal showcase, allowing visitors to learn more about the individual, view their skills, and get in touch with them easily. ",
+  },
+  {
+    name: "Portfolio Website",
+    link: "https://neerajportfolio-eight.vercel.app",
+    author: "Neeraj",
+    logo: "/neerajportfolio.png",
+    time: "Jun 22, 2024",
+    description:
+      "This portfolio website serves as a personal showcase, allowing visitors to learn more about the individual, view their skills, and get in touch with them easily. ",
   },
   {
     name: "Orthodontics Website",
     link: "https://ravi-orthodontics.vercel.app",
     author: "Neeraj",
     logo: "/raviorthodontics.png",
-    time: "Jun 9, 2025",
+    time: "Oct 9, 2024",
     description:
-      "I've focused on delivering secure, high-performance applications with authentication and deploying them on platforms like AWS and Vercel.",
+      "This website enables dental patients to book an appointment. This website is designed to be user-friendly and interaction. It provides a better way to engage with the people.",
+  },
+  {
+    name: "Mental Health Website",
+    link: "https://mymentalhole.vercel.app",
+    author: "Neeraj",
+    logo: "/mentalhole.webp",
+    time: "Oct 9, 2024",
+    description:
+      "This website enables dental patients to book an appointment. This website is designed to be user-friendly and interaction. It provides a better way to engage with the people.",
   },
 ];
 
@@ -83,18 +101,18 @@ const Projects = () => {
               <Image
                 src={logo}
                 alt={name}
-                height={200}
-                width={200}
-                className="rounded-md hover:scale-106 transition object-cover"
+                height={150}
+                width={150}
+                className="rounded-md hover:scale-106 transition object-contain"
               />
             </Link>
           </div>
         ))}
       </div>
       <Separator orientation="vertical" />
-      <aside className="hidden lg:flex ">
+      {/* <aside className="hidden lg:flex ">
         <p>Hello</p>
-      </aside>
+      </aside> */}
     </div>
   );
 };

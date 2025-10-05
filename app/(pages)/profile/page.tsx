@@ -139,9 +139,9 @@ const Profile = () => {
               <PopoverContent className="w-fit">
                 <Link
                   href="mailto:neeraj.webdev26@gmail.com"
-                  className="flex items-center gap-2 hover:underline"
+                  className="flex items-center  gap-2 hover:underline"
                 >
-                  <Mail className="h-4 w-4 " /> Email me
+                  <Mail className="h-4 w-4 stroke-red-700" /> Email me
                 </Link>
               </PopoverContent>
             </Popover>
@@ -287,8 +287,8 @@ const Profile = () => {
       </div>
       <Separator />
       <Projects />
-
-      <div className="">
+      <Separator />
+      <div className="mb-14">
         <h1 className="text-2xl font-regular my-4">Related Topics</h1>
         <div className="grid grid-cols-2 space-x-4 space-y-4">
           {related.map(({ name, href, suggestion }) => (

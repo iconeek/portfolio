@@ -6,12 +6,14 @@ import Footer from "@/components/globals/Footer";
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Wrapper>
-      <SearchHeader />
-      <Separator />
-      {children}
+    <>
+      <Wrapper>
+        <SearchHeader />
+        <Separator />
+        {children}
+      </Wrapper>
       <Footer />
-    </Wrapper>
+    </>
   );
 };
 
