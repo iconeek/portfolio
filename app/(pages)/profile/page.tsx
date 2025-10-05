@@ -22,6 +22,8 @@ import {
   Twitter,
   X,
 } from "lucide-react";
+import { ConfettiButton } from "@/components/ui/confetti";
+
 import {
   Popover,
   PopoverContent,
@@ -95,38 +97,10 @@ const pictures = [
   },
 ];
 
-const related = [
-  {
-    name: "Neeraj ",
-    suggestion: "Projects",
-    href: "/projects",
-  },
-  {
-    name: "Neeraj ",
-    suggestion: "About",
-    href: "/about",
-  },
-  {
-    name: "Neeraj ",
-    suggestion: "Contact",
-    href: "/contact",
-  },
-  {
-    name: "Neeraj ",
-    suggestion: "Resume",
-    href: "/Resume.pdf",
-  },
-  {
-    name: "Neeraj ",
-    suggestion: "Homepage",
-    href: "/",
-  },
-];
-
 const Profile = () => {
   return (
-    <Wrapper className="my-6 flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
-      <div className="flex items-center gap-6">
+    <Wrapper className=" flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
+      <div className="flex items-center gap-6 my-6">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold">Neeraj </h1>
           <p className="text-sm text-gray-800 flex items-center gap-2">
@@ -155,12 +129,20 @@ const Profile = () => {
             Resume
           </Link>
         </Button>
-        <Button
+        {/* <Button
           className="rounded-full border-none bg-blue-100 font-regular hover:bg-blue-200 hover:cursor-pointer"
           variant="outline"
         >
           <Link href="/about">About</Link>
-        </Button>
+        </Button> */}
+        <ConfettiButton className="bg-transparent hover:bg-transparent hover:cursor-pointer">
+          <Image
+            src="/illustration/developer.svg"
+            alt="Developer Image"
+            height={50}
+            width={50}
+          />
+        </ConfettiButton>
       </div>
 
       <div className="flex items-center justify-start gap-2">
@@ -288,23 +270,6 @@ const Profile = () => {
       <Separator />
       <Projects />
       <Separator />
-      <div className="mb-14">
-        <h1 className="text-2xl font-regular my-4">Related Topics</h1>
-        <div className="grid grid-cols-2 space-x-4 space-y-4">
-          {related.map(({ name, href, suggestion }) => (
-            <Link
-              href={href}
-              key={suggestion}
-              className="flex justify-between items-center gap-2 rounded-md p-4 bg-zinc-100 hover:bg-zinc-200"
-            >
-              <p className="w-full">
-                {name} <span className="font-bold">{suggestion}</span>
-              </p>
-              <Search className="h-4 w-4 stroke-gray-600" />
-            </Link>
-          ))}
-        </div>
-      </div>
     </Wrapper>
   );
 };

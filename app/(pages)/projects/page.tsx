@@ -6,7 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { EllipsisVertical, ExternalLink } from "lucide-react";
+import { EllipsisVertical, ExternalLink, Search } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
@@ -49,9 +49,32 @@ const projects = [
   },
 ];
 
+const related = [
+  {
+    name: "Neeraj ",
+    suggestion: "Projects",
+    href: "/projects",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Contact",
+    href: "/contact",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Resume",
+    href: "/Resume.pdf",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Homepage",
+    href: "/",
+  },
+];
+
 const Projects = () => {
   return (
-    <div className="flex items-start ">
+    <div className="flex items-start">
       <div className="my-4 flex flex-col gap-6 ">
         {projects.map(({ name, link, logo, author, description, time }) => (
           <div key={name} className="flex gap-2 items-center ">
@@ -108,6 +131,23 @@ const Projects = () => {
             </Link>
           </div>
         ))}
+        <div className="mb-14">
+          <h1 className="text-2xl font-regular my-4">Related Topics</h1>
+          <div className="grid grid-cols-2 space-x-4 space-y-4">
+            {related.map(({ name, href, suggestion }) => (
+              <Link
+                href={href}
+                key={suggestion}
+                className="flex justify-between items-center gap-2 rounded-md p-4 bg-zinc-100 hover:bg-zinc-200"
+              >
+                <p className="w-full">
+                  {name} <span className="font-bold">{suggestion}</span>
+                </p>
+                <Search className="h-4 w-4 stroke-gray-600" />
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
       <Separator orientation="vertical" />
       {/* <aside className="hidden lg:flex ">

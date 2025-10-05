@@ -12,6 +12,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import SocialsGrip from "@/components/globals/grip";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const routes = [
   {
@@ -22,18 +46,50 @@ const routes = [
     name: "Projects",
     href: "/projects",
   },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
+  // {
+  //   name: "About",
+  //   href: "/about",
+  // },
+  // {
+  //   name: "Contact",
+  //   href: "/contact",
+  // },
 ];
+
+const FormSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  email: z.email().min(2, {
+    message: "Email must be correct.",
+  }),
+  message: z
+    .string()
+    .min(2, {
+      message: "Message must be at least 2 characters.",
+    })
+    .optional(),
+});
 
 const SearchHeader = () => {
   const pathName = usePathname();
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      message: "",
+    },
+  });
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    toast("You submitted the following values", {
+      description: (
+        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
+          {/* <code className="text-white">{JSON.stringify(data, null, 2)}</code> */}
+        </pre>
+      ),
+    });
+  }
   return (
     <div>
       <div className="flex items-center justify-between h-24">
@@ -89,6 +145,127 @@ const SearchHeader = () => {
             </Link>
           </Button>
         ))}
+        <Sheet>
+          <SheetTrigger
+            className={cn(
+              "hover:font-semibold hover:cursor-pointer hover:text-gray-800",
+              "hover:text-gray-900 text-gray-500",
+              buttonVariants({
+                variant: "link",
+              })
+            )}
+          >
+            Contact
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader className="border-b shadow-sm">
+              <SheetTitle className="w-full text-xl font-regular">
+                Send hello to Neeraj
+              </SheetTitle>
+            </SheetHeader>
+            <SheetDescription className="text-black" asChild>
+              <div className="px-4 w-full space-y-6">
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <FormField
+                      control={form.control}
+                      name="username"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-regular text">
+                            Your Name (required)
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="John doe"
+                              {...field}
+                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500"
+                            />
+                          </FormControl>
+                          {/* <FormDescription className="text-xs">
+                            Please type your real name
+                          </FormDescription> */}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </form>
+                </Form>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-regular text">
+                            Your Email
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="johndoe@gmail.com"
+                              {...field}
+                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500"
+                            />
+                          </FormControl>
+                          {/* <FormDescription className="text-xs">
+                            Please type your correct email
+                          </FormDescription> */}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </form>
+                </Form>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-regular text">
+                            Message
+                          </FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tell me about yourself"
+                              {...field}
+                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500 resize-none h-28"
+                            />
+                          </FormControl>
+                          {/* <FormDescription className="text-xs">
+                            Please write your the reason
+                          </FormDescription> */}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </form>
+                </Form>
+              </div>
+            </SheetDescription>
+            <SheetFooter className="flex flex-col gap-4">
+              <p className="text-xs">
+                Pleas enter your correct details so i can contact you. Pleas
+                enter your correct details so i can contact you. Pleas enter
+                your correct details so i can contact you.
+              </p>
+              <Button className="rounded-full border border-black bg-blue-100 hover:bg-blue-200 hover:cursor-pointer text-black">
+                Submit
+              </Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </Wrapper>
     </div>
   );
