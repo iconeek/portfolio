@@ -3,7 +3,6 @@
 import Wrapper from "@/components/globals/Wrapper";
 import React from "react";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -11,6 +10,8 @@ import { Camera, Grip, Mic, Search, Slash, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import SocialsGrip from "@/components/globals/grip";
 
 const routes = [
   {
@@ -57,7 +58,7 @@ const SearchHeader = () => {
                   className="object-contain flex md:hidden"
                 />
               </Link>
-              <span className="flex items-center">Neeraj Bhardwaj</span>
+              <span className="flex items-center">Neeraj </span>
             </span>
             <span className="flex gap-3">
               <Link href="/">
@@ -71,14 +72,7 @@ const SearchHeader = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 pointer-events-none">
-          <Grip className="h-5 w-5 pointer-events-none" />
-          <Avatar className="pointer-events-none">
-            <AvatarFallback className="pointer-events-none bg-gray-800 text-white">
-              N
-            </AvatarFallback>
-          </Avatar>
-        </div>
+        <SocialsGrip />
       </div>
 
       <Wrapper className="flex items-center justify-start gap-1 h-full max-w-4xl md:max-w-6xl lg:max-w-7xl">

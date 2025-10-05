@@ -13,28 +13,57 @@ import {
 } from "@/components/ui/carousel";
 import {
   EllipsisVertical,
+  ExternalLink,
   GithubIcon,
   Linkedin,
   LinkedinIcon,
+  Mail,
+  Search,
   Twitter,
   X,
 } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import Projects from "../projects/page";
+import Footer from "@/components/globals/Footer";
 
 const socials = [
   {
     name: "Linkedin",
     href: "https://www.linkedin.com/in/neerajneerajweb/",
     icon: Linkedin,
+    stroke: "stroke-blue-500",
+    border: "border-blue-400",
+    fill: "hover:fill-blue-600",
   },
   {
     name: "Github",
     href: "https://github.com/iconeek",
     icon: GithubIcon,
+    stroke: "stroke-black",
+    border: "border-zinc-400",
+    fill: "hover:fill-zinc-800",
   },
   {
     name: "X",
     href: "#",
     icon: Twitter,
+    stroke: "stroke-blue-500",
+    border: "border-blue-400",
+    fill: "hover:fill-blue-600",
   },
 ];
 
@@ -66,15 +95,56 @@ const pictures = [
   },
 ];
 
+const related = [
+  {
+    name: "Neeraj ",
+    suggestion: "Projects",
+    href: "/projects",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "About",
+    href: "/about",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Contact",
+    href: "/contact",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Resume",
+    href: "/Resume.pdf",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Homepage",
+    href: "/",
+  },
+];
+
 const Profile = () => {
   return (
     <Wrapper className="my-6 flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
       <div className="flex items-center gap-6">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold">Neeraj Bhardwaj</h1>
+          <h1 className="text-3xl font-semibold">Neeraj </h1>
           <p className="text-sm text-gray-800 flex items-center gap-2">
             Full Stack Developer
-            <EllipsisVertical className="h-4 w-4 stroke-black" />
+            <Popover>
+              <PopoverTrigger className="hover:cursor-pointer hover:bg-zinc-300 rounded-full p-1">
+                <EllipsisVertical className="h-4 w-4 stroke-black " />
+              </PopoverTrigger>
+
+              <PopoverContent className="w-fit">
+                <Link
+                  href="mailto:neeraj.webdev26@gmail.com"
+                  className="flex items-center gap-2 hover:underline"
+                >
+                  <Mail className="h-4 w-4 " /> Email me
+                </Link>
+              </PopoverContent>
+            </Popover>
           </p>
         </div>
         <Button
@@ -101,23 +171,42 @@ const Profile = () => {
                 className="basis-1/3 md:basis-1/5"
                 key={picture.name}
               >
-                <div className="relative">
-                  <Image
-                    src={picture.src}
-                    alt={picture.alt}
-                    height={200}
-                    width={200}
-                    className="rounded-lg"
-                  />
-                  <p className="absolute bottom-2 left-2 font-semibold text-white">
-                    {picture.name}
-                  </p>
-                </div>
+                <Dialog>
+                  <DialogTrigger className="hover:cursor-pointer">
+                    <div className="relative">
+                      <Image
+                        src={picture.src}
+                        alt={picture.alt}
+                        height={200}
+                        width={200}
+                        className="rounded-lg"
+                      />
+                      <p className="absolute bottom-2 left-2 font-semibold text-white">
+                        {picture.name}
+                      </p>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>
+                        <Image
+                          src={picture.src}
+                          alt={picture.alt}
+                          height={410}
+                          width={410}
+                          className="rounded-lg"
+                        />
+                      </DialogTitle>
+                    </DialogHeader>
+                    {/* <DialogFooter>
+
+                    </DialogFooter> */}
+                  </DialogContent>
+                </Dialog>
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-       
       </div>
       <Separator />
 
@@ -125,7 +214,7 @@ const Profile = () => {
         <div className="">
           <h1 className="text-xl font-semibold">About</h1>
           <p className="my-4">
-            I&apos;m a Full Stack Developer with 1.3+ years of experience
+            I&apos;m a Full Stack Developer with 1.5+ years of experience
             building web applications that are both functional and
             user-friendly. I&apos;ve worked with technologies like React,
             Node.js, Next.js, and MongoDB, developing everything from smooth,
@@ -172,10 +261,10 @@ const Profile = () => {
               </a>
             </p>
             <p className="text-sm">
-              <span className="font-bold">Height: </span>177cm
+              <span className="font-bold">Height: </span>177 cm
             </p>
             <p className="text-sm">
-              <span className="font-bold">Weight: </span>92 Kg
+              <span className="font-bold">Weight: </span>201 lbs
             </p>
           </div>
         </div>
@@ -184,14 +273,34 @@ const Profile = () => {
       <div className="">
         <h1 className="text-xl font-semibold my-4">Profiles</h1>
         <div className="flex items-center justify-start gap-6">
-          {socials.map(({ name, href, icon: Icon }) => (
+          {socials.map(({ name, href, icon: Icon, stroke, border, fill }) => (
             <Link
               key={name}
               href={href}
-              className="border-2 border-zinc-400 p-2 rounded-full"
+              className={cn("border-2 p-2 rounded-full", border)}
               target="_blank"
             >
-              <Icon className="h-5 w-5" />
+              <Icon className={cn("h-5 w-5 ", stroke, fill)} />
+            </Link>
+          ))}
+        </div>
+      </div>
+      <Separator />
+      <Projects />
+
+      <div className="">
+        <h1 className="text-2xl font-regular my-4">Related Topics</h1>
+        <div className="grid grid-cols-2 space-x-4 space-y-4">
+          {related.map(({ name, href, suggestion }) => (
+            <Link
+              href={href}
+              key={suggestion}
+              className="flex justify-between items-center gap-2 rounded-md p-4 bg-zinc-100 hover:bg-zinc-200"
+            >
+              <p className="w-full">
+                {name} <span className="font-bold">{suggestion}</span>
+              </p>
+              <Search className="h-4 w-4 stroke-gray-600" />
             </Link>
           ))}
         </div>

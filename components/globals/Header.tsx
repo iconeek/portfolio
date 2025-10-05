@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Wrapper from "./Wrapper";
-import { Grip } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import SocialsGrip from "@/components/globals/grip";
 
 const routes = [
   {
@@ -29,14 +29,7 @@ const Header = () => {
             </Link>
           ))}
         </div>
-        <div className="flex items-center gap-4 pointer-events-none">
-          <Grip className="h-5 w-5 pointer-events-none" />
-          <Avatar className="pointer-events-none">
-            <AvatarFallback className="pointer-events-none bg-gray-800 text-white">
-              N
-            </AvatarFallback>
-          </Avatar>
-        </div>
+        <SocialsGrip />
       </Wrapper>
     </>
   );

@@ -24,7 +24,7 @@ export default function Home() {
           <span className="flex gap-2 items-center">
             <Search className="h-4.5 w-4.5 stroke-gray-500" />
             <span className="flex items-center">
-              Neeraj Bhardwaj
+              Neeraj
               <Slash className="stroke-black animate-caret-blink rotate-137 h-5 w-5" />
             </span>
           </span>
