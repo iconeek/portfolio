@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
   EllipsisVertical,
   GithubIcon,
   Linkedin,
@@ -28,6 +35,34 @@ const socials = [
     name: "X",
     href: "#",
     icon: Twitter,
+  },
+];
+
+const pictures = [
+  {
+    src: "/picone.jpeg",
+    alt: "My Farm picture",
+    name: "Farm",
+  },
+  {
+    src: "/pictwo.jpeg",
+    alt: "My Hiking picture",
+    name: "Hiking",
+  },
+  {
+    src: "/picthree.jpeg",
+    alt: "My Activity picture",
+    name: "Activity",
+  },
+  {
+    src: "/picfour.jpeg",
+    alt: "My Games picture",
+    name: "Games",
+  },
+  {
+    src: "/picfive.jpeg",
+    alt: "My Outing picture",
+    name: "Outing",
   },
 ];
 
@@ -59,42 +94,30 @@ const Profile = () => {
       </div>
 
       <div className="flex items-center justify-start gap-2">
-        <div className="relative">
-          <Image
-            src="/pictwo.jpeg"
-            alt="Profile"
-            height={200}
-            width={200}
-            className="rounded-lg"
-          />
-          <p className="absolute bottom-2 left-2 font-semibold text-white">
-            Hiking
-          </p>
-        </div>
-        <div className="relative">
-          <Image
-            src="/picthree.jpeg"
-            alt="Profile"
-            height={200}
-            width={200}
-            className="rounded-lg"
-          />
-          <p className="absolute bottom-2 left-2 font-semibold text-white">
-            Activity
-          </p>
-        </div>
-        <div className="relative hidden md:flex">
-          <Image
-            src="/picone.jpeg"
-            alt="Profile"
-            height={200}
-            width={200}
-            className=" rounded-lg"
-          />
-          <p className="absolute bottom-2 left-2 font-semibold text-white">
-            Farm
-          </p>
-        </div>
+        <Carousel>
+          <CarouselContent>
+            {pictures.map((picture) => (
+              <CarouselItem
+                className="basis-1/3 md:basis-1/5"
+                key={picture.name}
+              >
+                <div className="relative">
+                  <Image
+                    src={picture.src}
+                    alt={picture.alt}
+                    height={200}
+                    width={200}
+                    className="rounded-lg"
+                  />
+                  <p className="absolute bottom-2 left-2 font-semibold text-white">
+                    {picture.name}
+                  </p>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+       
       </div>
       <Separator />
 
@@ -102,7 +125,7 @@ const Profile = () => {
         <div className="">
           <h1 className="text-xl font-semibold">About</h1>
           <p className="my-4">
-            I&apos;m a Full Stack Developer with 1.5+ years of experience
+            I&apos;m a Full Stack Developer with 1.3+ years of experience
             building web applications that are both functional and
             user-friendly. I&apos;ve worked with technologies like React,
             Node.js, Next.js, and MongoDB, developing everything from smooth,
