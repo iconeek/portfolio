@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <Wrapper className="flex flex-col items-center justify-center space-y-4">
         <Image
-          src="/google.png"
+          src="/qoogle.png"
           alt="Logo"
           width={400}
           height={400}

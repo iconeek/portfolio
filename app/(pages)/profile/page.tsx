@@ -1,3 +1,5 @@
+"use client";
+
 import Wrapper from "@/components/globals/Wrapper";
 import SearchHeader from "../header";
 import { Separator } from "@/components/ui/separator";
@@ -41,6 +43,7 @@ import {
 import { cn } from "@/lib/utils";
 import Projects from "../projects/page";
 import Footer from "@/components/globals/Footer";
+import { motion } from "motion/react";
 
 const socials = [
   {
@@ -61,7 +64,7 @@ const socials = [
   },
   {
     name: "X",
-    href: "#",
+    href: "https://x.com/NeerajWebdev26",
     icon: Twitter,
     stroke: "stroke-blue-500",
     border: "border-blue-400",
@@ -100,7 +103,12 @@ const pictures = [
 const Profile = () => {
   return (
     <Wrapper className=" flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
-      <div className="flex items-center gap-6 my-6">
+      <motion.div
+        className="flex items-center gap-6 my-6"
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold">Neeraj </h1>
           <p className="text-sm text-gray-800 flex items-center gap-2">
@@ -143,9 +151,14 @@ const Profile = () => {
             width={50}
           />
         </ConfettiButton>
-      </div>
+      </motion.div>
 
-      <div className="flex items-center justify-start gap-2">
+      <motion.div
+        className="flex items-center justify-start gap-2"
+        initial={{ x: 20, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <Carousel>
           <CarouselContent>
             {pictures.map((picture) => (
@@ -189,7 +202,7 @@ const Profile = () => {
             ))}
           </CarouselContent>
         </Carousel>
-      </div>
+      </motion.div>
       <Separator />
 
       <div className="flex flex-col md:flex-row items-center">
@@ -210,7 +223,7 @@ const Profile = () => {
           </p>
           <div className="space-y-1">
             <p className="text-sm">
-              <span className="font-bold">Born: </span>March 24, 2000 (age 26
+              <span className="font-bold">Born: </span>March 26, 2000 (age 25
               years),{" "}
               <a
                 href="https://www.google.com/search?gs_ssp=eJzj4tDP1TcwLjAvMmD04s1ILKpMzEtUyMxLyUwEAF5NB-s&q=haryana+india&rlz=1C1UEAD_enCA1179CA1179&oq=haryana&gs_lcrp=EgZjaHJvbWUqDQgAEC4YkQIYgAQYigUyDQgAEC4YkQIYgAQYigUyBggBEEUYOTIMCAIQLhhDGIAEGIoFMgwIAxAuGEMYgAQYigUyEggEEAAYQxiDARixAxiABBiKBTISCAUQLhhDGIMBGLEDGIAEGIoFMgwIBhAAGEMYgAQYigUyBwgHEAAYgAQyBwgIEAAYgATSAQgyMjgyajFqN6gCALACAA&sourceid=chrome&ie=UTF-8"

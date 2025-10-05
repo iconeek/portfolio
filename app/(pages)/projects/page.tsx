@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +11,7 @@ import {
 import { EllipsisVertical, ExternalLink, Search } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { motion } from "motion/react";
 
 const projects = [
   {
@@ -57,11 +60,6 @@ const related = [
   },
   {
     name: "Neeraj ",
-    suggestion: "Contact",
-    href: "/contact",
-  },
-  {
-    name: "Neeraj ",
     suggestion: "Resume",
     href: "/Resume.pdf",
   },
@@ -70,12 +68,27 @@ const related = [
     suggestion: "Homepage",
     href: "/",
   },
+  {
+    name: "Neeraj ",
+    suggestion: "Portfolio",
+    href: "https://codewithnik.vercel.app",
+  },
+  {
+    name: "Neeraj ",
+    suggestion: "Dental Website",
+    href: "https://ravi-orthodontics.vercel.app",
+  },
 ];
 
 const Projects = () => {
   return (
-    <div className="flex items-start">
-      <div className="my-4 flex flex-col gap-6 ">
+    <motion.div
+      className="flex items-start"
+      initial={{ y: 20, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="my-4 flex flex-col gap-6">
         {projects.map(({ name, link, logo, author, description, time }) => (
           <div key={name} className="flex gap-2 items-center ">
             <div className="flex flex-col">
@@ -153,7 +166,7 @@ const Projects = () => {
       {/* <aside className="hidden lg:flex ">
         <p>Hello</p>
       </aside> */}
-    </div>
+    </motion.div>
   );
 };
 

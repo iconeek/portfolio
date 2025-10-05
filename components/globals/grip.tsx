@@ -61,15 +61,15 @@ const SocialsGrip = () => {
         <PopoverTrigger className="hover:cursor-pointer rounded-full hover:bg-zinc-300 p-2">
           <Grip className="h-5 w-5" />
         </PopoverTrigger>
-        <PopoverContent className="w-fit space-x-6 space-y-6 grid grid-cols-2">
+        <PopoverContent className="w-fit gap-8 grid grid-cols-2">
           {socials.map(({ name, href, icon: Icon, stroke, border, fill }) => (
             <Link
               href={href}
               key={name}
               target="_blank"
-              className="p-2 hover:bg-zinc-100 rounded-lg"
+              className="p-4 hover:bg-zinc-100 rounded-lg"
             >
-              <span className="flex py-6 flex-col items-center justify-center">
+              <span className="flex  flex-col items-center justify-center">
                 <Icon className={cn("", stroke, fill)} />
                 <span className="h-full w-full text-sm text-center">
                   {name}

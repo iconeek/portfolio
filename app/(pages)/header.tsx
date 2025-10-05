@@ -2,6 +2,7 @@
 
 import Wrapper from "@/components/globals/Wrapper";
 import React from "react";
+import { motion } from "motion/react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -96,10 +97,10 @@ const SearchHeader = () => {
         <div className="flex items-center justify-start w-full">
           <Link href="/">
             <Image
-              src="/google.png"
+              src="/qoogleshort.png"
               alt="Logo"
-              width={140}
-              height={140}
+              width={70}
+              height={70}
               className="object-contain hidden md:block"
             />
           </Link>
@@ -107,11 +108,11 @@ const SearchHeader = () => {
             <span className="flex items-center">
               <Link href="/">
                 <Image
-                  src="/google.png"
+                  src="/qoogleshort.png"
                   alt="Logo"
-                  width={100}
-                  height={100}
-                  className="object-contain flex md:hidden"
+                  width={40}
+                  height={40}
+                  className="object-contain flex md:hidden mr-1"
                 />
               </Link>
               <span className="flex items-center">Neeraj </span>
@@ -160,11 +161,16 @@ const SearchHeader = () => {
           <SheetContent>
             <SheetHeader className="border-b shadow-sm">
               <SheetTitle className="w-full text-xl font-regular">
-                Send hello to Neeraj
+                Send Hello to Neeraj
               </SheetTitle>
             </SheetHeader>
             <SheetDescription className="text-black" asChild>
-              <div className="px-4 w-full space-y-6">
+              <motion.div
+                className="px-4 w-full space-y-6"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -182,7 +188,7 @@ const SearchHeader = () => {
                             <Input
                               placeholder="John doe"
                               {...field}
-                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500"
+                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500 rounded-none"
                             />
                           </FormControl>
                           {/* <FormDescription className="text-xs">
@@ -211,7 +217,7 @@ const SearchHeader = () => {
                             <Input
                               placeholder="johndoe@gmail.com"
                               {...field}
-                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500"
+                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500 rounded-none"
                             />
                           </FormControl>
                           {/* <FormDescription className="text-xs">
@@ -240,7 +246,7 @@ const SearchHeader = () => {
                             <Textarea
                               placeholder="Tell me about yourself"
                               {...field}
-                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500 resize-none h-28"
+                              className="shadow-none focus-visible:border-none  focus-visible:ring-zinc-500 resize-none h-28 rounded-none"
                             />
                           </FormControl>
                           {/* <FormDescription className="text-xs">
@@ -252,15 +258,18 @@ const SearchHeader = () => {
                     />
                   </form>
                 </Form>
-              </div>
+              </motion.div>
             </SheetDescription>
             <SheetFooter className="flex flex-col gap-4">
               <p className="text-xs">
-                Pleas enter your correct details so i can contact you. Pleas
-                enter your correct details so i can contact you. Pleas enter
-                your correct details so i can contact you.
+                When you submit this form, you may be asked to provide personal
+                information such as your name, email address, or any other
+                details necessary for us to respond to your inquiry.
               </p>
-              <Button className="rounded-full border border-black bg-blue-100 hover:bg-blue-200 hover:cursor-pointer text-black">
+              <Button
+                className="rounded-full border border-black bg-blue-100 hover:bg-blue-200 hover:cursor-pointer text-black"
+                disabled
+              >
                 Submit
               </Button>
             </SheetFooter>
