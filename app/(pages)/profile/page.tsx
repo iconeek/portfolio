@@ -1,5 +1,3 @@
-"use client";
-
 import Wrapper from "@/components/globals/Wrapper";
 import SearchHeader from "../header";
 import { Separator } from "@/components/ui/separator";
@@ -23,6 +21,7 @@ import {
   Search,
   Twitter,
   X,
+  Undo,
 } from "lucide-react";
 import { ConfettiButton } from "@/components/ui/confetti";
 
@@ -43,7 +42,6 @@ import {
 import { cn } from "@/lib/utils";
 import Projects from "../projects/page";
 import Footer from "@/components/globals/Footer";
-import { motion } from "motion/react";
 
 const socials = [
   {
@@ -103,12 +101,7 @@ const pictures = [
 const Profile = () => {
   return (
     <Wrapper className=" flex flex-col justify-start gap-6 w-full max-w-4xl md:max-w-6xl lg:max-w-7xl">
-      <motion.div
-        className="flex items-center gap-6 my-6"
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="flex items-center gap-6 my-6">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold">Neeraj </h1>
           <p className="text-sm text-gray-800 flex items-center gap-2">
@@ -143,22 +136,21 @@ const Profile = () => {
         >
           <Link href="/about">About</Link>
         </Button> */}
-        <ConfettiButton className="bg-transparent hover:bg-transparent hover:cursor-pointer">
-          <Image
+        <ConfettiButton className=" bg-transparent hover:bg-transparent hover:cursor-pointer">
+          {/* <Image
             src="/illustration/developer.svg"
             alt="Developer Image"
             height={50}
             width={50}
-          />
+          /> */}
+          <span className="text-3xl">🎉 </span>
         </ConfettiButton>
-      </motion.div>
+        {/* <span className="flex ">
+          <Undo className="stroke-pink-500" /> Click Me
+        </span> */}
+      </div>
 
-      <motion.div
-        className="flex items-center justify-start gap-2"
-        initial={{ x: 20, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="flex items-center justify-start gap-2">
         <Carousel>
           <CarouselContent>
             {pictures.map((picture) => (
@@ -202,7 +194,7 @@ const Profile = () => {
             ))}
           </CarouselContent>
         </Carousel>
-      </motion.div>
+      </div>
       <Separator />
 
       <div className="flex flex-col md:flex-row items-center">

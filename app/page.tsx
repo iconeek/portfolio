@@ -1,9 +1,25 @@
+"use client";
+
 import Wrapper from "@/components/globals/Wrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Camera, Mic, Search, Slash } from "lucide-react";
 import Image from "next/image";
 import Header from "@/components/globals/Header";
 import Footer from "@/components/globals/Footer";
+import Typewriter from "typewriter-effect";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import Link from "next/link";
 
@@ -24,14 +40,41 @@ export default function Home() {
           <span className="flex gap-2 items-center">
             <Search className="h-4.5 w-4.5 stroke-gray-500" />
             <span className="flex items-center">
-              Neeraj
-              <Slash className="stroke-black animate-caret-blink rotate-137 h-5 w-5" />
+              <Typewriter
+                options={{
+                  strings: ["Neeraj"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+              {/* <Slash className="stroke-black animate-caret-blink rotate-137 h-5 w-5" /> */}
             </span>
           </span>
 
           <span className="flex gap-4.5">
-            <Mic className="h-4.5 w-4.5 stroke-gray-700  " />
-            <Camera className="h-4.5 w-4.5 stroke-gray-700" />
+            <Dialog>
+              <DialogTrigger>
+                <Mic className="h-4.5 w-4.5 stroke-gray-700 hover:stroke-gray-500 cursor-pointer" />
+              </DialogTrigger>
+              <DialogContent className="h-screen !w-[100%] !max-w-screen !rounded-none flex items-center justify-center">
+                <DialogHeader className="flex flex-col items-center justify-center">
+                  <DialogTitle className="p-9 rounded-full bg-red-600 ">
+                    <Mic className="size-7 stroke-white animate-pulse" />
+                  </DialogTitle>
+                  <DialogDescription>
+                    HaHa..Gotcha. I am not a real mic.
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+            <Tooltip>
+              <TooltipTrigger>
+                <Camera className="h-4.5 w-4.5 stroke-gray-700" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Camera called in sick</p>
+              </TooltipContent>
+            </Tooltip>
           </span>
         </div>
 
