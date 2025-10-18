@@ -146,12 +146,12 @@ const Projects = () => {
         ))}
         <div className="mb-14">
           <h1 className="text-2xl font-regular my-4">Related Topics</h1>
-          <div className="grid grid-cols-2 space-x-4 space-y-4">
+          <div className="grid grid-cols-2 gap-4">
             {related.map(({ name, href, suggestion }) => (
               <Link
                 href={href}
                 key={suggestion}
-                className="flex justify-between items-center gap-2 rounded-md p-4 bg-zinc-100 hover:bg-zinc-200"
+                className="flex justify-between items-center gap-2 rounded-md p-4 bg-zinc-100 hover:bg-zinc-200 text-sm"
               >
                 <p className="w-full">
                   {name} <span className="font-bold">{suggestion}</span>
