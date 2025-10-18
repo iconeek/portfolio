@@ -50,7 +50,7 @@ const socials = [
     icon: Linkedin,
     stroke: "stroke-blue-500",
     border: "border-blue-400",
-    fill: "hover:fill-blue-600",
+    fill: "group-hover:fill-blue-600",
   },
   {
     name: "Github",
@@ -58,7 +58,7 @@ const socials = [
     icon: GithubIcon,
     stroke: "stroke-black",
     border: "border-zinc-400",
-    fill: "hover:fill-zinc-800",
+    fill: "group-hover:fill-zinc-800",
   },
   {
     name: "X",
@@ -66,7 +66,7 @@ const socials = [
     icon: Twitter,
     stroke: "stroke-blue-500",
     border: "border-blue-400",
-    fill: "hover:fill-blue-600",
+    fill: "group-hover:fill-blue-600",
   },
 ];
 
@@ -259,12 +259,12 @@ const Profile = () => {
 
       <div className="">
         <h1 className="text-xl font-semibold my-4">Profiles</h1>
-        <div className="flex items-center justify-start gap-6">
+        <div className=" flex items-center justify-start gap-6">
           {socials.map(({ name, href, icon: Icon, stroke, border, fill }) => (
             <Link
               key={name}
               href={href}
-              className={cn("border-2 p-2 rounded-full", border)}
+              className={cn("border-2 p-2 rounded-full group", border)}
               target="_blank"
             >
               <Icon className={cn("h-5 w-5 ", stroke, fill)} />
