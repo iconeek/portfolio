@@ -22,8 +22,21 @@ import {
 } from "@/components/ui/tooltip";
 
 import Link from "next/link";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === "NumpadEnter") {
+        redirect("/profile");
+      }
+    };
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
   return (
     <>
       <Header />
@@ -56,7 +69,7 @@ export default function Home() {
               <DialogTrigger>
                 <Mic className="h-4.5 w-4.5 stroke-gray-700 hover:stroke-gray-500 cursor-pointer" />
               </DialogTrigger>
-              <DialogContent className="h-screen !w-[100%] !max-w-screen !rounded-none flex items-center justify-center">
+              <DialogContent className="h-[90%] !w-[90%] !max-w-screen !rounded-none flex items-center justify-center">
                 <DialogHeader className="flex flex-col items-center justify-center">
                   <DialogTitle className="p-9 rounded-full bg-red-600 ">
                     <Mic className="size-7 stroke-white animate-pulse" />
