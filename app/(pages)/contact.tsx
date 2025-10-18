@@ -84,6 +84,8 @@ export default function Contact() {
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-6"
+                  autoComplete="off"
+                  autoFocus={false}
                 >
                   <FormField
                     control={form.control}

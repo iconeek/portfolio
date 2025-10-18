@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   EllipsisVertical,
@@ -17,8 +19,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { redirect, usePathname } from "next/navigation";
 const socials = [
   {
     name: "Linkedin",
@@ -55,6 +66,7 @@ const socials = [
 ];
 
 const SocialsGrip = () => {
+  const pathName = usePathname();
   return (
     <div className="flex items-center gap-4">
       <Popover>
@@ -80,11 +92,26 @@ const SocialsGrip = () => {
         </PopoverContent>
       </Popover>
 
-      <Avatar className="pointer-events-none">
-        <AvatarFallback className="pointer-events-none bg-gray-800 text-white">
-          N
-        </AvatarFallback>
-      </Avatar>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Avatar className="cursor-pointer">
+            <AvatarFallback className=" bg-gray-800 text-white">
+              N
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <Button
+            variant="link"
+            onClick={() => {
+              redirect("/");
+            }}
+            className={cn("h-full w-full cursor-pointer")}
+          >
+            <DropdownMenuLabel>{pathName === "/" ? "Hello User" : "Sign out"}</DropdownMenuLabel>
+          </Button>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };

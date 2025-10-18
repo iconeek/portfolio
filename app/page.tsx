@@ -88,7 +88,7 @@ export default function Home() {
             </Dialog>
             <Tooltip>
               <TooltipTrigger>
-                <Camera className="h-4.5 w-4.5 stroke-gray-700" />
+                <Camera className="h-4.5 w-4.5 stroke-gray-700 cursor-pointer hover:stroke-gray-500" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Camera called in sick</p>
