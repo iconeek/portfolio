@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/tooltip";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { redirect } from "next/navigation";
 
 export default function Home() {
@@ -37,6 +37,12 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    inputRef.current?.focus(); // This opens the keyboard on mobile
+  };
   return (
     <>
       <Header />
@@ -52,7 +58,7 @@ export default function Home() {
         <div className="rounded-full shadow-md hover:shadow-lg border h-12 w-full max-w-lg flex items-center justify-between px-4">
           <span className="flex gap-2 items-center">
             <Search className="h-4.5 w-4.5 stroke-gray-500" />
-            <span className="flex items-center">
+            <span className="flex items-center" onClick={handleClick}>
               <Typewriter
                 options={{
                   strings: ["Neeraj"],
