@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import {
   Sheet,
@@ -34,6 +34,8 @@ import { EmailTemplate } from "@/components/globals/email-template";
 import { send } from "@/actions/sendEmail";
 
 export default function Contact() {
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<EmailSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,9 +47,12 @@ export default function Contact() {
 
   async function onSubmit(values: EmailSchema) {
     try {
+      setIsLoading(true);
       await send(values);
       form.reset();
       toast.success("Sent successfully");
+      setIsLoading(false);
+      setOpen((prev) => !prev);
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -55,7 +60,7 @@ export default function Contact() {
 
   return (
     <div>
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger
           className={cn(
             "hover:font-semibold hover:cursor-pointer hover:text-gray-800",
@@ -162,14 +167,15 @@ export default function Contact() {
                   <Button
                     className="rounded-full border border-black bg-blue-100 hover:bg-blue-200 hover:cursor-pointer text-black w-full"
                     type="submit"
+                    disabled={isLoading}
                   >
-                    Submit
+                    {isLoading ? "Submitting" : "Submit"}
                   </Button>
                 </form>
               </Form>
             </motion.div>
           </SheetDescription>
-          <SheetFooter className="flex flex-col gap-4"></SheetFooter>
+          
         </SheetContent>
       </Sheet>
     </div>
